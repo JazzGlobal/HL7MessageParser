@@ -1,0 +1,20 @@
+MSH|^~\&|Orchard PRSQRL|Orchard PRSQRL|API Outbound Results Testing^APIOutboundTESTING|API Outbound Results Testing^APIOutboundTESTING|20230719160336||ORU^R01|00000510|P|2.3|||NE|NE||||||
+PID|1||232000000001|FakeMRN123|zztest^Kate^Grace^MC^Doctor||200001010000|F||W|Address 1^Address 2^WESTFIELD^IN^46074^U.S.A.||111-555-4444^^^FakeEmail@fakeemail.com|222-333-4444|||||111558888|||NH||||||||N||||||
+PV1|1|O|^^^API Testing&APITesting||||stoned^(Corwen) Stone^Damien|||||||||||||||||||||||||||||||||||||20230719152917||||||01306-ng-23200|||
+ORC|RE||23200000003|1|||^^^20200420154000||20200501153500|stoned^(Corwen) Stone^Damien||stoned^(Corwen) Stone^Damien|^^^API Testing&APITesting~APITesting 1^APITesting 2^WESTFIELD^IN^46074^U.S.A.|||||||1|||8888657309|
+OBR|1||23200000003|EXOCI^Exosome (For Cause)|R||20230719154000|||stoned^(Corwen) Stone^Damien|||||Urine|stoned^(Corwen) Stone^Damien||||||20101010154131||LAB|F||^^^^^R||^01306-ng-23200|||||&(Corwen) Stone&Damien|||||||||||||||||||||PATIENT|||||
+OBX|1|NM|B2M^B2M^LAB^^B2M^LN||18.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|2|NM|CD44^CD44^LAB^^CD44^LN||2.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|3|NM|CXCL11^CXCL11^LAB^^CXCL11^LN||3.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|4|NM|IFNAR2^IFNAR2^LAB^^IFNAR2^LN||4.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|5|NM|IL32^IL32^LAB^^IL32^LN||5.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|6|NM|IRAK2^IRAK2^LAB^^IRAK2^LN||6.00||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|7|NM|NAMPT^NAMPT^LAB^^NAMPT^LN||7.00||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|8|NM|PGK1^PGK1^LAB^^PGK1^LN||8.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|9|NM|PYCARD^PYCARD^LAB^^PYCARD^LN||9.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|10|NM|C3^C3^LAB^^C3^LN||10.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|11|NM|CD74^CD74^LAB^^CD74^LN||11.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|12|NM|IL18BP^IL18BP^LAB^^IL18BP^LN||12.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+OBX|13|NM|MHV^MHV^LAB^^MHV^LN||13.000||||||F|||20230719154131|LAB|^(Corwen) Stone^Damien||||||||||
+ORC|RE||23200000004|2|||20230717154000^^^20230719154000||20230719153500|stoned^(Corwen) Stone^Damien||stoned^(Corwen) Stone^Damien|^^^API Testing&APITesting~APITesting 1^APITesting 2^WESTFIELD^IN^46074^U.S.A.|||||||1|||8888657309|
+OBR|1||23200000004|EXOBS^Exosome (For Cause) Coriell Report - NS|R||20230719154000^^^20230719154000|||stoned^(Corwen) Stone^Damien|||||Urine|stoned^(Corwen) Stone^Damien||||||20111010154131||APIInboundTest|P||^^^^^R||^01306-ng-23200||||||||||||||||||||||||||PATIENT|||||
