@@ -4,6 +4,7 @@ use std::fs;
 use std::fs::File;
 use std::io::Write;
 use chrono;
+use chrono::Local;
 
 #[derive(Debug)]
 struct HL7_Segment {
@@ -100,7 +101,7 @@ fn main() {
             }
         }
     }
-    let output_path = format!("output_{}.txt", "");
+    let output_path = format!("output_{}.txt", Local::now().format("%Y-%m-%d %H%M%S").to_string());
     let mut file = File::create(&output_path).expect(&*format!("Could not create file at {}", output_path));
     file.write_all(output.as_bytes()).expect("Could not write to file.");
 }
