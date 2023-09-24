@@ -6,39 +6,9 @@ use std::io::Write;
 use chrono;
 use chrono::Local;
 
-#[derive(Debug)]
-struct HL7_Segment {
-    pub header: String,
-    pub contents: Vec<HL7_Field>,
-}
+pub mod hl7;
 
-#[derive(Debug)]
-struct HL7_Field {
-    position: String,
-    data: String,
-    sub_fields: Vec<HL7_Subfield>,
-}
-
-#[derive(Debug)]
-struct HL7_Subfield {
-    position: String,
-    data: String,
-}
-
-fn create_hl7_segment() -> HL7_Segment {
-    HL7_Segment {
-        header: "".to_string(),
-        contents: vec![],
-    }
-}
-
-fn create_hl7_field() -> HL7_Field {
-    HL7_Field {
-        position: "".to_string(),
-        data: "".to_string(),
-        sub_fields: vec![],
-    }
-}
+use hl7::hl7::{HL7_Field, HL7_Subfield, HL7_Segment};
 
 fn main() {
     if args().len() < 2 {
@@ -56,7 +26,7 @@ fn main() {
 
     for line in lines {
         let fields = line.split('|');
-        let mut new_segment = create_hl7_segment();
+        let mut new_segment = hl7::hl7::create_hl7_segment();
         let mut current_position = 1;
 
         for field in fields {
@@ -65,7 +35,7 @@ fn main() {
                 continue;
             }
             let subfields = field.split("^");
-            let mut hl7_field = create_hl7_field();
+            let mut hl7_field = hl7::hl7::create_hl7_field();
 
             let mut sub_position = 1;
             for subfield in subfields {
@@ -85,16 +55,16 @@ fn main() {
 
     let mut output = "".to_string();
 
-    for i in hl7_message {
-        println!("{}", i.header);
+    for i in &hl7_message {
+        println!("{}", &i.header);
         output.push_str(&"\n");
-        for field in i.contents {
-            for subfield in field.sub_fields {
+        for field in &i.contents {
+            for subfield in &field.sub_fields {
                 if subfield.data.is_empty() {
                     continue;
                 }
                 let x = format!("{} {}.{} : {}",
-                                i.header, field.position, subfield.position, subfield.data);
+                                &i.header, field.position, subfield.position, subfield.data);
                 println!("{}", &x);
                 output.push_str(&"\n");
                 output.push_str(&x);
