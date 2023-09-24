@@ -1,14 +1,14 @@
+use chrono;
+use chrono::Local;
 use std::env;
 use std::env::args;
 use std::fs;
 use std::fs::File;
 use std::io::Write;
-use chrono;
-use chrono::Local;
 
 pub mod hl7;
 
-use hl7::hl7::{HL7_Field, HL7_Subfield, HL7_Segment};
+use hl7::hl7::{HL7_Field, HL7_Segment, HL7_Subfield};
 
 fn main() {
     if args().len() < 2 {
@@ -63,15 +63,28 @@ fn main() {
                 if subfield.data.is_empty() {
                     continue;
                 }
-                let x = format!("{} {}.{} : {}",
-                                &i.header, field.position, subfield.position, subfield.data);
+                let x = format!(
+                    "{} {}.{} : {}",
+                    &i.header, field.position, subfield.position, subfield.data
+                );
                 println!("{}", &x);
                 output.push_str(&"\n");
                 output.push_str(&x);
             }
         }
     }
-    let output_path = format!("output_{}.txt", Local::now().format("%Y-%m-%d %H%M%S").to_string());
-    let mut file = File::create(&output_path).expect(&*format!("Could not create file at {}", output_path));
-    file.write_all(output.as_bytes()).expect("Could not write to file.");
+    let output_path = format!(
+        "output_{}.txt",
+        Local::now().format("%Y-%m-%d %H%M%S").to_string()
+    );
+    let mut file =
+        File::create(&output_path).expect(&*format!("Could not create file at {}", output_path));
+    file.write_all(output.as_bytes())
+        .expect("Could not write to file.");
+
+    println!("Testing that code again yo!");
+    let x = hl7_message.get_mut(0).unwrap();
+    x.modify_field(4, 22, "some new data yo!".to_string())
+        .modify_field(4, 22, "even more data on another subfield".to_string());
+    dbg!(x);
 }
