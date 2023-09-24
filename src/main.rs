@@ -81,10 +81,4 @@ fn main() {
         File::create(&output_path).expect(&*format!("Could not create file at {}", output_path));
     file.write_all(output.as_bytes())
         .expect("Could not write to file.");
-
-    println!("Testing that code again yo!");
-    let x = hl7_message.get_mut(0).unwrap();
-    x.modify_field(4, 22, "some new data yo!".to_string())
-        .modify_field(4, 22, "even more data on another subfield".to_string());
-    dbg!(x);
 }
