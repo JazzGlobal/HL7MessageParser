@@ -23,19 +23,18 @@ impl HL7_Segment {
         sub_field_position: usize,
         new_data: String,
     ) -> &mut HL7_Segment {
-        if sub_field_position - 1 < 0 {
-            println!("Cannot modify a subfield that is lower than 1.");
-            return self;
+        let mut field_position = field_position;
+        let mut sub_field_position = sub_field_position;
+        if field_position == 0 {
+            field_position = 1;
+        }
+        if sub_field_position == 0 {
+            sub_field_position = 1;
         }
 
-        if field_position - 1 < 0 {
-            println!("Cannot modify a field that is lower than 1.");
-            return self;
-        }
-
-        let mut field_to_modify = self.contents.get_mut(field_position - 1);
+        let field_to_modify = self.contents.get_mut(field_position - 1);
         if let Some(field_to_modify) = field_to_modify {
-            let mut subfield_to_modify =
+            let subfield_to_modify =
                 field_to_modify.get_subfield_by_position(sub_field_position as i32);
             if let Some(subfield_to_modify) = subfield_to_modify {
                 subfield_to_modify.data = new_data;
