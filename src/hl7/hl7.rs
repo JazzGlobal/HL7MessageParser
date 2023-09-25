@@ -72,12 +72,7 @@ impl HL7_Field {
         &mut self,
         sub_field_position: i32,
     ) -> Option<&mut HL7_Subfield> {
-        for x in self.sub_fields.iter_mut() {
-            if x.position == sub_field_position.to_string() {
-                return Some(x);
-            }
-        }
-        None
+        self.sub_fields.iter_mut().find(|x| x.position == sub_field_position.to_string())
     }
 }
 
