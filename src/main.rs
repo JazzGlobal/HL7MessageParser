@@ -16,10 +16,8 @@ fn main() {
     }
 
     let file_path = args().nth(1).unwrap();
-    let contents = fs::read_to_string(&file_path).expect(&format!(
-        "Error reading file \"{}\", does it exist?",
-        file_path
-    ));
+    let contents = fs::read_to_string(&file_path).unwrap_or_else(|_| panic!("Error reading file \"{}\", does it exist?",
+        file_path));
     let lines = contents.lines();
 
     let mut hl7_message: Vec<HL7_Segment> = vec![];
@@ -57,7 +55,7 @@ fn main() {
 
     for i in &hl7_message {
         println!("{}", &i.header);
-        output.push_str("\n");
+        output.push('\n');
         for field in &i.contents {
             for subfield in &field.sub_fields {
                 if subfield.data.is_empty() {
@@ -68,7 +66,7 @@ fn main() {
                     &i.header, field.position, subfield.position, subfield.data
                 );
                 println!("{}", &x);
-                output.push_str("\n");
+                output.push('\n');
                 output.push_str(&x);
             }
         }
@@ -78,7 +76,7 @@ fn main() {
         Local::now().format("%Y-%m-%d %H%M%S")
     );
     let mut file =
-        File::create(&output_path).expect(&format!("Could not create file at {}", output_path));
+        File::create(&output_path).unwrap_or_else(|_| panic!("Could not create file at {}", output_path));
     file.write_all(output.as_bytes())
         .expect("Could not write to file.");
 }
