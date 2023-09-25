@@ -1,6 +1,6 @@
-use chrono;
+
 use chrono::Local;
-use std::env;
+
 use std::env::args;
 use std::fs;
 use std::fs::File;
@@ -8,7 +8,7 @@ use std::io::Write;
 
 pub mod hl7;
 
-use hl7::hl7::{HL7_Field, HL7_Segment, HL7_Subfield};
+use hl7::hl7::{HL7_Segment, HL7_Subfield};
 
 fn main() {
     if args().len() < 2 {
@@ -16,7 +16,7 @@ fn main() {
     }
 
     let file_path = args().nth(1).unwrap();
-    let contents = fs::read_to_string(&file_path).expect(&*format!(
+    let contents = fs::read_to_string(&file_path).expect(&format!(
         "Error reading file \"{}\", does it exist?",
         file_path
     ));
@@ -34,7 +34,7 @@ fn main() {
                 new_segment.header = field.to_string();
                 continue;
             }
-            let subfields = field.split("^");
+            let subfields = field.split('^');
             let mut hl7_field = hl7::hl7::create_hl7_field();
 
             let mut sub_position = 1;
@@ -57,7 +57,7 @@ fn main() {
 
     for i in &hl7_message {
         println!("{}", &i.header);
-        output.push_str(&"\n");
+        output.push_str("\n");
         for field in &i.contents {
             for subfield in &field.sub_fields {
                 if subfield.data.is_empty() {
@@ -68,17 +68,17 @@ fn main() {
                     &i.header, field.position, subfield.position, subfield.data
                 );
                 println!("{}", &x);
-                output.push_str(&"\n");
+                output.push_str("\n");
                 output.push_str(&x);
             }
         }
     }
     let output_path = format!(
         "output_{}.txt",
-        Local::now().format("%Y-%m-%d %H%M%S").to_string()
+        Local::now().format("%Y-%m-%d %H%M%S")
     );
     let mut file =
-        File::create(&output_path).expect(&*format!("Could not create file at {}", output_path));
+        File::create(&output_path).expect(&format!("Could not create file at {}", output_path));
     file.write_all(output.as_bytes())
         .expect("Could not write to file.");
 }

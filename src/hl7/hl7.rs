@@ -41,7 +41,7 @@ impl HL7_Segment {
             } else {
                 field_to_modify.sub_fields.push(HL7_Subfield {
                     position: sub_field_position.to_string(),
-                    data: new_data.to_string(),
+                    data: new_data,
                 })
             }
         } else {
@@ -52,7 +52,7 @@ impl HL7_Segment {
             };
             new_field.sub_fields.push(HL7_Subfield {
                 position: sub_field_position.to_string(),
-                data: new_data.to_string(),
+                data: new_data,
             });
         }
 
