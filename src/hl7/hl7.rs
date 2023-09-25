@@ -54,6 +54,7 @@ impl HL7_Segment {
                 position: sub_field_position.to_string(),
                 data: new_data,
             });
+            self.contents.push(new_field);
         }
 
         self
