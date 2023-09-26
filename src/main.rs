@@ -8,7 +8,7 @@ use std::io::Write;
 
 pub mod hl7;
 
-use hl7::hl7::{HL7_Segment, HL7_Subfield};
+use hl7::hl7::{Hl7Segment, Hl7Subfield};
 
 fn main() {
     if args().len() < 2 {
@@ -20,7 +20,7 @@ fn main() {
         file_path));
     let lines = contents.lines();
 
-    let mut hl7_message: Vec<HL7_Segment> = vec![];
+    let mut hl7_message: Vec<Hl7Segment> = vec![];
 
     for line in lines {
         let fields = line.split('|');
@@ -39,7 +39,7 @@ fn main() {
             for subfield in subfields {
                 hl7_field.data = field.to_string();
                 hl7_field.position = current_position.to_string();
-                hl7_field.sub_fields.push(HL7_Subfield {
+                hl7_field.sub_fields.push(Hl7Subfield {
                     position: sub_position.to_string(),
                     data: subfield.to_string(),
                 });

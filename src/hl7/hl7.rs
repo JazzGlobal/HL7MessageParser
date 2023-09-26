@@ -1,10 +1,10 @@
 #[derive(Debug)]
-pub struct HL7_Segment {
+pub struct Hl7Segment {
     pub header: String,
-    pub contents: Vec<HL7_Field>,
+    pub contents: Vec<Hl7Field>,
 }
 
-impl HL7_Segment {
+impl Hl7Segment {
     /**
     Allows modification of a given field/subfield combinations within the HL7 Segment. Returns mutable self reference
     to allow method chaining.
@@ -22,7 +22,7 @@ impl HL7_Segment {
         field_position: usize,
         sub_field_position: usize,
         new_data: String,
-    ) -> &mut HL7_Segment {
+    ) -> &mut Hl7Segment {
         let mut field_position = field_position;
         let mut sub_field_position = sub_field_position;
         if field_position == 0 {
@@ -39,18 +39,18 @@ impl HL7_Segment {
             if let Some(subfield_to_modify) = subfield_to_modify {
                 subfield_to_modify.data = new_data;
             } else {
-                field_to_modify.sub_fields.push(HL7_Subfield {
+                field_to_modify.sub_fields.push(Hl7Subfield {
                     position: sub_field_position.to_string(),
                     data: new_data,
                 })
             }
         } else {
-            let mut new_field = HL7_Field {
+            let mut new_field = Hl7Field {
                 position: field_position.to_string(),
                 data: new_data.to_string(),
                 sub_fields: vec![],
             };
-            new_field.sub_fields.push(HL7_Subfield {
+            new_field.sub_fields.push(Hl7Subfield {
                 position: sub_field_position.to_string(),
                 data: new_data,
             });
@@ -62,36 +62,36 @@ impl HL7_Segment {
 }
 
 #[derive(Debug)]
-pub struct HL7_Field {
+pub struct Hl7Field {
     pub position: String,
     pub data: String,
-    pub sub_fields: Vec<HL7_Subfield>,
+    pub sub_fields: Vec<Hl7Subfield>,
 }
 
-impl HL7_Field {
+impl Hl7Field {
     pub fn get_subfield_by_position(
         &mut self,
         sub_field_position: i32,
-    ) -> Option<&mut HL7_Subfield> {
+    ) -> Option<&mut Hl7Subfield> {
         self.sub_fields.iter_mut().find(|x| x.position == sub_field_position.to_string())
     }
 }
 
 #[derive(Debug)]
-pub struct HL7_Subfield {
+pub struct Hl7Subfield {
     pub position: String,
     pub data: String,
 }
 
-pub fn create_hl7_segment() -> HL7_Segment {
-    HL7_Segment {
+pub fn create_hl7_segment() -> Hl7Segment {
+    Hl7Segment {
         header: "".to_string(),
         contents: vec![],
     }
 }
 
-pub fn create_hl7_field() -> HL7_Field {
-    HL7_Field {
+pub fn create_hl7_field() -> Hl7Field {
+    Hl7Field {
         position: "".to_string(),
         data: "".to_string(),
         sub_fields: vec![],
