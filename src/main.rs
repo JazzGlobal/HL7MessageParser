@@ -1,4 +1,3 @@
-
 use chrono::Local;
 
 use std::env::args;
@@ -16,8 +15,8 @@ fn main() {
     }
 
     let file_path = args().nth(1).unwrap();
-    let contents = fs::read_to_string(&file_path).unwrap_or_else(|_| panic!("Error reading file \"{}\", does it exist?",
-        file_path));
+    let contents = fs::read_to_string(&file_path)
+        .unwrap_or_else(|_| panic!("Error reading file \"{}\", does it exist?", file_path));
     let lines = contents.lines();
 
     let mut hl7_message: Vec<Hl7Segment> = vec![];
@@ -71,12 +70,9 @@ fn main() {
             }
         }
     }
-    let output_path = format!(
-        "output_{}.txt",
-        Local::now().format("%Y-%m-%d %H%M%S")
-    );
-    let mut file =
-        File::create(&output_path).unwrap_or_else(|_| panic!("Could not create file at {}", output_path));
+    let output_path = format!("output_{}.txt", Local::now().format("%Y-%m-%d %H%M%S"));
+    let mut file = File::create(&output_path)
+        .unwrap_or_else(|_| panic!("Could not create file at {}", output_path));
     file.write_all(output.as_bytes())
         .expect("Could not write to file.");
 }
